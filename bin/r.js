@@ -28275,7 +28275,7 @@ define('requirePatch', [ 'env!env/file', 'pragma', 'parse', 'lang', 'logger', 'c
 define('commonJs', ['env!env/file', 'parse'], function (file, parse) {
     'use strict';
     var commonJs = {
-        //Set to false if you do not want this file to log. Useful in environments
+        //Set to false if you do not want this file to console. Useful in environments
         //like node where you want the work to happen without noise.
         useLog: true,
 

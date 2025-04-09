@@ -88,7 +88,7 @@ var Connection = cls.Class.extend({
     },
     
     close: function(logError) {
-        log.info("Closing connection to "+this._connection.remoteAddress+". Error: "+logError);
+        console.info("Closing connection to "+this._connection.remoteAddress+". Error: "+logError);
         this._connection.close();
     }
 });
@@ -107,11 +107,17 @@ WS.socketIOServer = Server.extend({
         self.port = port;
         var app = require('express')();
         var http = require('http').Server(app);
-        self.io = require('socket.io')(http);
+        self.io = require('socket.io')(http, {
+            cors: {
+                origin:["http://127.0.0.1:5500", "http://localhost:5500"],// Autoriser cette origine
+                methods: ["GET", "POST"],       // Autoriser ces méthodes
+                credentials: true               // Autoriser les cookies si nécessaire
+            }
+        });
 
 
         self.io.on('connection', function(connection){
-          log.info('a user connected');
+          console.info('a user connected');
 
           connection.remoteAddress = connection.handshake.address.address
 
@@ -128,13 +134,13 @@ WS.socketIOServer = Server.extend({
         
 
         self.io.on('error', function (err) { 
-            log.error(err.stack); 
+            console.error(err.stack); 
             self.error_callback()
 
          })
 
         http.listen(port, function(){
-          log.info('listening on *:' + port);
+          console.info('listening on *:' + port);
         });
     },
 
@@ -169,7 +175,7 @@ WS.socketIOConnection = Connection.extend({
         });
 
         connection.on("message", function (message) {
-            log.info("Received: " + message)
+            console.info("Received: " + message)
             if (self.listen_callback)
                 self.listen_callback(message)
         });
@@ -196,7 +202,7 @@ WS.socketIOConnection = Connection.extend({
     },
 
     close: function(logError) {
-        log.info("Closing connection to socket"+". Error: " + logError);
+        console.info("Closing connection to socket"+". Error: " + logError);
         this._connection.disconnect();
     }
     
@@ -251,7 +257,7 @@ WS.MultiVersionWebsocketServer = Server.extend({
             response.end();
         });
         this._httpServer.listen(port, function() {
-            log.info("Server is listening on port "+port);
+            console.info("Server is listening on port "+port);
         });
         
         this._miksagoServer = wsserver.createServer();
