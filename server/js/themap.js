@@ -1,12 +1,14 @@
-
 var cls = require('./lib/class')
     fs = require('fs'),
     _ = require('underscore'),
     Utils = require('./utils'),
     Checkpoint = require('./checkpoint');
 
-module.exports = Map = cls.Class.extend({    
+module.exports = TheMap = cls.Class.extend({    
     init: function(filepath) {
+        if (!filepath) {
+            filepath = "./server/maps/world_server.json";
+        }
     	var self = this;
     
     	this.isLoaded = false;
@@ -21,7 +23,7 @@ module.exports = Map = cls.Class.extend({
         }
         else
         {
-            log.error(filepath + " doesn't exist.");
+            console.error(filepath + " doesn't exist.");
         }
     },
 
@@ -91,7 +93,7 @@ module.exports = Map = cls.Class.extend({
                     tileIndex += 1;
                 }
             }
-            //log.info("Collision grid generated.");
+            //console.info("Collision grid generated.");
         }
     },
 

@@ -28,7 +28,7 @@ module.exports = Player = Character.extend({
 
             var action = parseInt(message[0]);
             
-            log.debug("Received: " + message);
+            console.debug("Received: " + message);
             if(!check(message)) {
                 self.connection.close("Invalid "+Types.getMessageTypeAsString(action)+" message format: "+message);
                 return;
@@ -346,7 +346,7 @@ module.exports = Player = Character.extend({
     
     equipItem: function(item) {
         if(item) {
-            log.debug(this.name + " equips " + Types.getKindAsString(item.kind));
+            console.debug(this.name + " equips " + Types.getKindAsString(item.kind));
             
             if(Types.isArmor(item.kind)) {
                 this.equipArmor(item.kind);
