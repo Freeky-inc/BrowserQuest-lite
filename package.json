@@ -2,6 +2,10 @@
     "name": "BrowserQuest",
     "version": "0.0.1",
     "private": false,
+    "scripts": {
+        "start": "node server/js/main.js"
+    },
+    
     "dependencies": {
         "16": "^0.0.2",
         "bison": ">0",
