@@ -1,0 +1,18 @@
+# Dockerfile.client
+
+FROM node:18
+
+# Installer http-server
+RUN npm install -g http-server
+
+# Créer un dossier de travail
+WORKDIR /app
+
+# Copier le dossier client dans le container
+COPY client /app
+
+# Exposer le port 8081 (ou autre)
+EXPOSE 8081
+
+# Lancer http-server pour servir les fichiers statiques
+CMD ["http-server", ".", "-p", "8081"]
