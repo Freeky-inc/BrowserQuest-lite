@@ -12,6 +12,13 @@ services:
       - .:/server
     working_dir: /server
     command: node server/js/main.js
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
 
   server2:
     build:
@@ -24,6 +31,13 @@ services:
       - .:/server
     working_dir: /server
     command: node server/js/main.js
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
 
   server3:
     build:
@@ -36,6 +50,12 @@ services:
       - .:/server
     working_dir: /server
     command: node server/js/main.js
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
 
   server4:
     build:
@@ -48,6 +68,12 @@ services:
       - .:/server
     working_dir: /server
     command: node server/js/main.js
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
 
   server5:
     build:
@@ -60,6 +86,25 @@ services:
       - .:/server
     working_dir: /server
     command: node server/js/main.js
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile.client
+    container_name: client
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/app  # Montage du code source pour le hot-reload
+    environment:
+      - NODE_ENV=development
+    command: sh -c "npm install && http-server -p 3000 --proxy http://localhost:3000?"
 
   nginx:
     image: nginx:latest
@@ -69,8 +114,15 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - server1
-      - server2
-      - server3
-      - server4
-      - server5
+      server1:
+        condition: service_healthy
+      server2:
+        condition: service_healthy
+      server3:
+        condition: service_healthy
+      server4:
+        condition: service_healthy
+      server5:
+        condition: service_healthy
+      client:
+        condition: service_healthy

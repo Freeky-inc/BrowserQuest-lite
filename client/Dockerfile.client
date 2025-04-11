@@ -1,0 +1,19 @@
+FROM node:16
+
+WORKDIR /client
+
+# Installer les dépendances de développement
+COPY package.json package-lock.json ./
+RUN npm install --include=dev
+
+# Copier tout le code source
+COPY client/ .
+
+# Installer http-server globalement
+RUN npm install -g http-server
+
+# Port exposé pour le développement
+EXPOSE 3000
+
+# Commande pour le mode développement
+CMD ["sh", "-c", "http-server -p 3000 --proxy http://localhost:3000?"]

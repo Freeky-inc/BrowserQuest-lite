@@ -4,3 +4,5 @@ build.txt
 client/audio/music
 .DS_Store
 *.swp
+package.json
+package-lock.json

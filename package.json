@@ -8,8 +8,8 @@
     
     "dependencies": {
         "16": "^0.0.2",
-        "bison": ">0",
-        "express": ">0",
+        "bison": "1.1.1",
+        "express": "^4.0.0",
         "log": ">0",
         "memcache": "0.3.0",
         "sanitizer": "0.1.2",

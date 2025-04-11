@@ -109,7 +109,7 @@ WS.socketIOServer = Server.extend({
         var http = require('http').Server(app);
         self.io = require('socket.io')(http, {
             cors: {
-                origin:["http://127.0.0.1:5500", "http://localhost:5500"],// Autoriser cette origine
+                origin:["http://127.0.0.1:5500", "http://localhost:5500", "http://127.0.0.1:3000", "http://localhost:3000"],// Autoriser cette origine
                 methods: ["GET", "POST"],       // Autoriser ces méthodes
                 credentials: true               // Autoriser les cookies si nécessaire
             }
