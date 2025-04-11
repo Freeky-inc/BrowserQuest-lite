@@ -5,11 +5,11 @@
     "scripts": {
         "start": "node server/js/main.js"
     },
-    
     "dependencies": {
         "16": "^0.0.2",
         "bison": ">0",
         "express": ">0",
+        "helmet": "^8.1.0",
         "log": ">0",
         "memcache": "0.3.0",
         "sanitizer": "0.1.2",

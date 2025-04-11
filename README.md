@@ -11,7 +11,8 @@ Changes
   * Deployment on Docker
   * Setting up a Load Balancer using Nginx
   * Implementing a Failover system with Dual-Stack support
-  * Application security reinforced through the deployment of firewalls and tools like Fail2Ban to safeguard the server against potential threats
+  * Securing the server with middlewares such as Helmet.
+  
 
 
 HOW TO RUN?
@@ -22,6 +23,7 @@ docker compose build
 docker compose up
 ```
 Then go inside the Client folder and open index.html (you can use the Live Server Vscode extension).
+
 
 Original README
 ============
@@ -40,10 +42,9 @@ Created by [Little Workshop](http://www.littleworkshop.fr):
 * Franck Lecollinet - [@whatthefranck](http://twitter.com/whatthefranck)
 * Guillaume Lecollinet - [@glecollinet](http://twitter.com/glecollinet)
 
-
 Menbres du groupe 9
 ======
-Baptiste-Jacques Bonnichon
+Baptiste-Jacques Bonnichon (problème commit vu avec Francois)
 Charles GROSSIN
 Hugo Martins
 Antoine Mahassadi

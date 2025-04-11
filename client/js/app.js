@@ -1,3 +1,5 @@
+const helmet = require('helmet');
+app.use(helmet());
 
 define(['jquery', 'storage'], function($, Storage) {
 
