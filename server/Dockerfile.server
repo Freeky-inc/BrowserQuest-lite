@@ -1,0 +1,18 @@
+# Utiliser une image Node.js
+FROM node:16
+
+# Définir le répertoire de travail
+WORKDIR /server
+
+# Copier les fichiers nécessaires
+COPY package*.json ./
+
+RUN npm install
+
+# Copier tout le code source
+COPY server/ ./
+
+EXPOSE 8080
+
+# Commande par défaut
+CMD ["node", "server/js/main.js"]
