@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reconnexion...</title>
+    <script>
+        function attemptReconnect() {
+            setTimeout(function() {
+                window.location.href = '/';
+            }, 5000); // Tente de se reconnecter après 5 secondes
+        }
+    </script>
+</head>
+<body onload="attemptReconnect()">
+    <h1>Tentative de reconnexion...</h1>
+    <p>Le serveur est temporairement indisponible. Reconnexion automatique...</p>
+</body>
+</html>
